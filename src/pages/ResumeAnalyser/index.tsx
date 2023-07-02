@@ -11,11 +11,14 @@ import "./analyser.css";
 import UploadPdf from "./UploadPdf/index";
 import AddJobDescription from "./AddJobDescription/index";
 import Result from "./Result/index";
+import { useDispatch } from "react-redux";
+import { getSuggestions, uploadFile } from "../../redux/action/resume.action";
 
 const ResumeAnalyser = () => {
-  const [activeTab, setIsActiveTab] = React.useState(1);
+  const [activeTab, setIsActiveTab] = React.useState(1  );
   const [fileData, setIsfileData] = React.useState(null);
   const [jobDes, setJobDes] = React.useState(null);
+  const dispatch = useDispatch();
 
   const handleResumeUpload = (file, isText) => {
     if (isText) {
@@ -24,14 +27,21 @@ const ResumeAnalyser = () => {
       return;
     }
     console.log(file);
-    setIsfileData(file);
-    setIsActiveTab(2);
+    const formData = new FormData();
+    formData.append("file", file);
+    dispatch(uploadFile(formData, ()=> {
+      setIsfileData(file);
+      setIsActiveTab(2);
+    }))
   };
 
-  const handleJDUpload = (file) => {
-    console.log(file);
-    setJobDes(file);
-    setIsActiveTab(3);
+  const handleJDUpload =(e)=> {
+    dispatch(getSuggestions(()=> {
+      setIsActiveTab(3)
+    }))
+  }
+  const handleReupload = () => {
+    setIsActiveTab(1);
   };
 
   function handleResumeReject() {
@@ -53,7 +63,7 @@ const ResumeAnalyser = () => {
         {activeTab !== 3 && (
           <section className="analyser-left">
             <h1>
-              Resume <span>Score</span>
+              Resume <span>Suggestions</span>
             </h1>
             <p>
               Use our FREE AI-powered platform to tailor your resume for a
@@ -139,7 +149,7 @@ const ResumeAnalyser = () => {
               <></>
             )}
             {activeTab === 3 ? (
-              <Result handleRejectJD={handleRejectJD} />
+              <Result handleBack={handleReupload} />
             ) : (
               <></>
             )}

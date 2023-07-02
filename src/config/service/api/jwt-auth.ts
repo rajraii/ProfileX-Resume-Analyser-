@@ -7,8 +7,12 @@ const jwtAxios = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
 });
+const token = localStorage.getItem('token');
+
+if (token) {
+  jwtAxios.defaults.headers.common['Authorization'] = `${token}`;
+}
 jwtAxios.interceptors.response.use(
   (res) => res,
   (err) => {

@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserDetails } from "./redux/action";
 
+// Code esa likho char log soche kya hugga h 
+
 function App() {
   const dispatch: (arg0: any) => any = useDispatch();
   useEffect(()=> {
@@ -18,9 +20,9 @@ function App() {
     <div className="App">
       <AppInfoView />
       <Routes>
-        <Route path="/login" element={<SignUpPage />} />
         <Route path="/" element={<ResumeAnalyser />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<SignUpPage />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

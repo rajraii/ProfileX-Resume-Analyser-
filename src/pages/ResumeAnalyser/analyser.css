@@ -156,6 +156,12 @@
   box-shadow: 0 2px 3px 0 hsla(0, 0%, 93.7%, 0.92);
   border-radius: 8.5px;
 }
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .activity_div {
   border-radius: 8.5px;
   width: 100%;
@@ -362,4 +368,41 @@
 }
 .score-page  > section {
   width: 100%;
+}
+.result-top {
+  width: 100%;
+}
+
+.feedbacks {
+  margin: 8px 0;
+  padding: 12px;
+}
+
+.feedbacks p {
+  margin: 6px 0;
+
+}
+
+.add_other_pdf button{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  padding: 0.4rem;
+  opacity: 0.3;
+  opacity: 1;
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(195, 159, 244, 0.43);
+  font-size: 11px;
+  text-align: center;
+  gap: 8px;
+  margin: auto;
+  margin-top: 6px;
+  cursor: pointer;
+  background-color: #a163f5;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
 }

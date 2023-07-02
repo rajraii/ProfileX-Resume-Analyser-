@@ -11,7 +11,7 @@ const userReducer = (
   const {type, payload} = action
   switch (type) {
     case GET_USER_DETAILS: {
-      return { ...state, user: payload.user };
+      return { ...state, user: payload };
     }
     case LOGOUT_USER: {
       return { ...state, user: null };

@@ -9,3 +9,6 @@ export const UPDATING_CONTENT = 'updating_content';
 // User
 export const GET_USER_DETAILS = 'get_user_details';
 export const LOGOUT_USER = 'logout_user';
+
+// Resume
+export const GET_SUGGESTIONS = 'get_suggestions';

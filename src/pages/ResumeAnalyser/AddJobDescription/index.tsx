@@ -1,6 +1,8 @@
 import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import selected_img from "../../../assets/img/selected_img.png";
+import { useSelector } from "react-redux";
+import Loader from "../../../components/Loader";
 
 interface Props {
   handleChange: Function;
@@ -8,23 +10,23 @@ interface Props {
   handleResumeReject: Function;
 }
 
-const AddJobDescription: React.FC<Props> = ({ handleChange, fileData, handleResumeReject }) => {
+const AddJobDescription: React.FC<Props> = ({
+  handleChange,
+  fileData,
+  handleResumeReject,
+}) => {
   const textAreaRef = React.useRef(null);
   const handleSubmit = () => {
     handleChange(textAreaRef.current.value);
   };
-  function handleClearResume (){
-    handleResumeReject()
+  function handleClearResume() {
+    handleResumeReject();
   }
-  const tempFile = {
-    lastModified: 1688222201849,
-    lastModifiedDate: "Sat Jul 01 2023 20:06:41 GMT+0530 (India Standard Time)",
-    name: "Jake_s_Resume__Anonymous_.pdf",
-    size: 125463,
-    type: "application/pdf",
-    webkitRelativePath: "",
-  };
-
+  const {
+    loading,
+    error,
+  }: { loading: boolean; error: any | null; displayMessage: string } =
+    useSelector(({ common }: { common: any }) => common);
   return (
     <div className="upload_container">
       <h3 className="steps-title">Job description</h3>
@@ -32,7 +34,7 @@ const AddJobDescription: React.FC<Props> = ({ handleChange, fileData, handleResu
       <div className="selected_file_wrapper">
         <div className="selected_file">
           <img src={selected_img} alt="selected_img" />
-          <p>{tempFile?.name}</p>
+          <p>{fileData?.name}</p>
           <button onClick={handleClearResume}>
             <AiFillCloseCircle fill="#F44336" />
           </button>
@@ -40,20 +42,27 @@ const AddJobDescription: React.FC<Props> = ({ handleChange, fileData, handleResu
       </div>
 
       <div className="step-activity">
-        <div className="">
-          <textarea
-            className="textArea"
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            ref={textAreaRef}
-          ></textarea>
+        {loading ? (
+        <div className="flex">
+          <Loader />
+          <p>If call takes too much time please be patient this is hosted on free server 🐢!</p>
         </div>
-
-        <button className="submit-btn" onClick={handleSubmit}>
-          Get Score
-        </button>
+        ) : 
+        <>
+          <div className="">
+            <textarea
+              className="textArea"
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              ref={textAreaRef}
+            ></textarea>
+          </div>
+          <button className="submit-btn" onClick={handleSubmit}>
+            Get Suggestions
+          </button>{" "}
+        </>}
       </div>
     </div>
   );
