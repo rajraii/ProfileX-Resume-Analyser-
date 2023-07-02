@@ -70,11 +70,11 @@ const SignUpPage = () => {
     <div className="signup-wrapper">
       <section className="signup-left">
         <div className="logo">
-          <h1>Code Makers</h1>
+          <h1 style={{fontSize: "28px"}}>ProfileX</h1>
         </div>
         <div className="login-form-container">
           <div className="signup-greet">
-            <h3>Welcome to Code Maker</h3>
+            <h3>Welcome to ProfileX</h3>
             <p>Login with your trusted platform to continue.</p>
           </div>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import './header.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons';
 import { Dropdown} from 'antd';
@@ -8,6 +8,11 @@ import type { MenuProps } from 'antd';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
+  const navigate = useNavigate()
+  const handleLogout =(e) => {
+    localStorage.clear();
+    navigate('/login')
+  }
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -20,16 +25,16 @@ const Header = () => {
     {
       key: '2',
       label: (
-        <Link to='/logout' >
+        <button  className='logout' onClick={handleLogout} >
           Logout
-        </Link>
+        </button>
       ),
     }
   ];
   const {user}: {user: any} = useSelector(({user}:{user: any}) => user)
   return (
     <div className="header">
-      <Link to="/"><h2>Code Makers</h2></Link>
+      <Link to="/"><h2 style={{fontSize: "28px"}}>ProfileX</h2></Link>
 
       <div className="user-modal">
         <Dropdown menu={{ items }} placement="bottomLeft">
